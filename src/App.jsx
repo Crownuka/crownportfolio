@@ -9,11 +9,16 @@ function App() {
   const [showAboutDetail, setShowAboutDetail] = useState(false)
   const detailRef = useRef(null)
 
-  const revealAboutDetail = () => {
-    setShowAboutDetail(true)
-    setTimeout(() => {
-      detailRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    }, 100)
+  const toggleAboutDetail = () => {
+    setShowAboutDetail((current) => {
+      const next = !current
+      if (!current) {
+        setTimeout(() => {
+          detailRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }, 100)
+      }
+      return next
+    })
   }
 
   return (
@@ -29,7 +34,7 @@ function App() {
 
       <main className="mx-auto max-w-[1200px] px-6 pb-24">
         <section id="about" className="pt-24">
-          <Hero onLearnMore={revealAboutDetail} />
+          <Hero onLearnMore={toggleAboutDetail} isAboutOpen={showAboutDetail} />
         </section>
 
         {showAboutDetail && (

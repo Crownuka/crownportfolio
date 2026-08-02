@@ -1,6 +1,6 @@
 import heroImg from './assets/bestPic.jpeg'
 
-export default function Hero({ onLearnMore }) {
+export default function Hero({ onLearnMore, isAboutOpen }) {
   return (
     <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
       <div className="space-y-6">
@@ -19,7 +19,7 @@ export default function Hero({ onLearnMore }) {
             onClick={onLearnMore}
             className="inline-flex w-full items-center justify-center rounded-full bg-violet-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-violet-400 sm:w-auto"
           >
-            Learn More
+            {isAboutOpen ? 'Hide details' : 'Learn More'}
           </button>
         </div>
       </div>
