@@ -10,19 +10,7 @@ function App() {
   const [showAboutDetail, setShowAboutDetail] = useState(false)
   const detailRef = useRef(null)
 
-  const toggleAboutDetail = () => {
-    setShowAboutDetail((current) => {
-      const next = !current
-      if (!current) {
-        setTimeout(() => {
-          detailRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-        }, 100)
-      }
-      return next
-    })
-  }
-
-  useEffect(() => {
+  const reveal = () => {
     const revealElements = Array.from(document.querySelectorAll('[data-scroll-reveal]'))
 
     const isVisible = (element) => {
@@ -30,20 +18,38 @@ function App() {
       return rect.top < window.innerHeight - 50 && rect.bottom > 50
     }
 
-    const reveal = () => {
-      revealElements.forEach((element) => {
-        if (element.classList.contains('scroll-reveal-visible')) return
-        if (isVisible(element)) {
-          element.classList.add('scroll-reveal-visible')
-        }
-      })
-    }
+    revealElements.forEach((element) => {
+      if (element.classList.contains('scroll-reveal-visible')) return
+      if (isVisible(element)) {
+        element.classList.add('scroll-reveal-visible')
+      }
+    })
+  }
 
+  const toggleAboutDetail = () => {
+    setShowAboutDetail((current) => {
+      const next = !current
+      if (!current) {
+        setTimeout(() => {
+          detailRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+          requestAnimationFrame(reveal)
+          window.setTimeout(reveal, 200)
+        }, 120)
+      }
+      return next
+    })
+  }
+
+  useEffect(() => {
     reveal()
+    requestAnimationFrame(reveal)
+    const preloadTimeout = window.setTimeout(reveal, 120)
 
     const handleScroll = () => requestAnimationFrame(reveal)
     window.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('touchmove', handleScroll, { passive: true })
     window.addEventListener('resize', handleScroll)
+    window.addEventListener('orientationchange', handleScroll)
 
     if ('IntersectionObserver' in window) {
       const observer = new IntersectionObserver(
@@ -58,20 +64,34 @@ function App() {
         { threshold: 0.15 },
       )
 
+      const revealElements = Array.from(document.querySelectorAll('[data-scroll-reveal]'))
       revealElements.forEach((element) => observer.observe(element))
 
       return () => {
         observer.disconnect()
+        window.clearTimeout(preloadTimeout)
         window.removeEventListener('scroll', handleScroll)
+        window.removeEventListener('touchmove', handleScroll)
         window.removeEventListener('resize', handleScroll)
+        window.removeEventListener('orientationchange', handleScroll)
       }
     }
 
     return () => {
+      window.clearTimeout(preloadTimeout)
       window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('touchmove', handleScroll)
       window.removeEventListener('resize', handleScroll)
+      window.removeEventListener('orientationchange', handleScroll)
     }
   }, [])
+
+  useEffect(() => {
+    if (!showAboutDetail) return
+    const timeout = window.setTimeout(reveal, 120)
+    requestAnimationFrame(reveal)
+    return () => window.clearTimeout(timeout)
+  }, [showAboutDetail])
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-[#0A0516] text-white">
@@ -90,7 +110,7 @@ function App() {
         </section>
 
         {showAboutDetail && (
-          <section id="about-detail" ref={detailRef} className="mt-24 rounded-[32px] border border-white/10 bg-[#10071c]/70 p-8 shadow-[0_40px_120px_rgba(88,41,178,0.12)] sm:p-10">
+          <section id="about-detail" ref={detailRef} className="mt-24 rounded-[32px] border border-white/10 bg-[#10071c]/70 p-8 shadow-[0_40px_120px_rgba(88,41,178,0.12)] sm:p-10" data-scroll-reveal>
             <div className="max-w-3xl space-y-6">
               <p className="text-sm uppercase tracking-[0.3em] text-violet-300/80">About Queen Uka</p>
               <h2 className="text-3xl font-semibold text-white sm:text-4xl">Transitioning from Law to Fullstack Development</h2>
@@ -114,7 +134,7 @@ function App() {
           </section>
         )}
 
-        <section id="skills" className="mt-24">
+        <section id="skills" className="mt-24" data-scroll-reveal>
           <div className="mb-8 max-w-2xl">
             <p className="text-sm uppercase tracking-[0.3em] text-violet-300/80">Skills</p>
             <h2 className="mt-4 text-3xl font-semibold text-white sm:text-4xl">
@@ -127,7 +147,7 @@ function App() {
           </div>
         </section>
 
-        <section id="projects" className="mt-24">
+        <section id="projects" className="mt-24" data-scroll-reveal>
           <div className="mb-8 max-w-2xl">
             <p className="text-sm uppercase tracking-[0.3em] text-violet-300/80">Projects</p>
             <h2 className="mt-4 text-3xl font-semibold text-white sm:text-4xl">

@@ -49,7 +49,7 @@ export default function Skills() {
       {skills.map(({ title, description, icon: Icon }, index) => (
         <article
           key={title}
-          className="group rounded-[28px] border border-white/10 bg-[#130b26]/70 p-8 shadow-[0_20px_80px_rgba(139,92,246,0.12)] transition duration-700 ease-out motion-safe:hover:-translate-y-3 motion-safe:hover:shadow-[0_50px_140px_rgba(139,92,246,0.24)] hover:border-violet-400/40 hover:bg-white/5 animate-fade-up"
+          className="group rounded-[28px] border border-white/10 bg-[#130b26]/70 p-8 shadow-[0_20px_80px_rgba(139,92,246,0.12)] transition duration-700 ease-out motion-safe:hover:-translate-y-3 motion-safe:hover:shadow-[0_50px_140px_rgba(139,92,246,0.24)] hover:border-violet-400/40 hover:bg-white/5"
           data-scroll-reveal
           style={{ transitionDelay: `${index * 80}ms` }}
           data-cursor-target

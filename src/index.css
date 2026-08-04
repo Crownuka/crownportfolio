@@ -112,12 +112,14 @@ a {
 
 [data-scroll-reveal] {
   opacity: 0;
-  transform: translate3d(0, 24px, 0);
-  transition: opacity 0.75s ease, transform 0.75s ease;
-  will-change: opacity, transform;
+  transform: translate3d(0, 120px, 0) scale(0.88);
+  filter: blur(14px);
+  transition: opacity 1.4s ease, transform 1.4s ease, filter 1.4s ease;
+  will-change: opacity, transform, filter;
 }
 
 .scroll-reveal-visible {
   opacity: 1;
-  transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: blur(0);
 }

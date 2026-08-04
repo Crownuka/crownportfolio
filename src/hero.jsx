@@ -3,7 +3,7 @@ import heroImg from './assets/bestPic.jpeg'
 export default function Hero({ onLearnMore, isAboutOpen }) {
   return (
     <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center animate-fade-up" data-scroll-reveal>
-      <div className="space-y-6">
+      <div className="space-y-6" data-scroll-reveal>
         <p className="text-sm uppercase tracking-[0.3em] text-violet-300/80">
           I AM QUEEN! a software developer.
         </p>
@@ -25,8 +25,8 @@ export default function Hero({ onLearnMore, isAboutOpen }) {
         </div>
       </div>
 
-      <div className="relative mx-auto flex max-w-[420px] justify-center">
-        <div className="relative overflow-hidden rounded-full border border-white/10 bg-[#130b26]/70 p-1 transition duration-500 hover:-translate-y-1 active:-translate-y-0.5 hover:shadow-[0_40px_120px_rgba(139,92,246,0.22)]">
+      <div className="relative mx-auto flex max-w-[420px] justify-center" data-scroll-reveal>
+        <div className="relative overflow-hidden rounded-full border border-white/10 bg-[#130b26]/70 p-1 transition duration-700 ease-out hover:-translate-y-1 active:-translate-y-0.5 hover:shadow-[0_40px_120px_rgba(139,92,246,0.22)]">
           <div className="absolute inset-0 rounded-full bg-gradient-to-br from-violet-500/35 via-fuchsia-500/25 to-transparent blur-2xl" />
           <img
             src={heroImg}
