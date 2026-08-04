@@ -19,8 +19,9 @@ export default function Project() {
       {projects.map((project, index) => (
         <article
           key={project.title}
-          className="group rounded-[32px] border border-white/10 bg-[#140726]/80 p-8 shadow-[0_40px_120px_rgba(88,41,178,0.12)] transition duration-500 motion-safe:hover:-translate-y-4 motion-safe:hover:shadow-[0_50px_160px_rgba(88,41,178,0.28)] hover:border-violet-400/30 hover:bg-white/5 animate-fade-up"
-          style={{ animationDelay: `${index * 120}ms` }}
+          className="group rounded-[32px] border border-white/10 bg-[#140726]/80 p-8 shadow-[0_40px_120px_rgba(88,41,178,0.12)] transition duration-700 ease-out motion-safe:hover:-translate-y-4 motion-safe:hover:shadow-[0_50px_160px_rgba(88,41,178,0.28)] hover:border-violet-400/30 hover:bg-white/5 animate-fade-up"
+          data-scroll-reveal
+          style={{ transitionDelay: `${index * 120}ms` }}
           data-cursor-target
         >
           <p className="text-sm uppercase tracking-[0.28em] text-violet-300/80">Live Project</p>

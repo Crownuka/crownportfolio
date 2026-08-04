@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Navbar from './navbar'
 import Hero from './hero'
 import Cursor from './Cursor'
@@ -21,6 +21,57 @@ function App() {
       return next
     })
   }
+
+  useEffect(() => {
+    const revealElements = Array.from(document.querySelectorAll('[data-scroll-reveal]'))
+
+    const isVisible = (element) => {
+      const rect = element.getBoundingClientRect()
+      return rect.top < window.innerHeight - 50 && rect.bottom > 50
+    }
+
+    const reveal = () => {
+      revealElements.forEach((element) => {
+        if (element.classList.contains('scroll-reveal-visible')) return
+        if (isVisible(element)) {
+          element.classList.add('scroll-reveal-visible')
+        }
+      })
+    }
+
+    reveal()
+
+    const handleScroll = () => requestAnimationFrame(reveal)
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('resize', handleScroll)
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries, obs) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('scroll-reveal-visible')
+              obs.unobserve(entry.target)
+            }
+          })
+        },
+        { threshold: 0.15 },
+      )
+
+      revealElements.forEach((element) => observer.observe(element))
+
+      return () => {
+        observer.disconnect()
+        window.removeEventListener('scroll', handleScroll)
+        window.removeEventListener('resize', handleScroll)
+      }
+    }
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', handleScroll)
+    }
+  }, [])
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-[#0A0516] text-white">
