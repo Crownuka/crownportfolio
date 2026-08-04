@@ -24,7 +24,7 @@ export default function Navbar() {
             <a
               key={id}
               href={`#${id}`}
-              className="text-sm text-white/70 transition hover:text-white"
+              className="text-sm text-white/70 transition duration-300 ease-out hover:text-white hover:-translate-y-0.5"
             >
               {id.charAt(0).toUpperCase() + id.slice(1)}
             </a>
@@ -33,7 +33,7 @@ export default function Navbar() {
 
         <button
           type="button"
-          className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 p-2 text-white transition hover:bg-white/10 md:hidden"
+          className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 p-2 text-white transition duration-300 ease-out hover:-rotate-3 hover:bg-white/10 md:hidden"
           aria-expanded={mobileOpen}
           aria-label="Toggle navigation menu"
           onClick={() => setMobileOpen((value) => !value)}
@@ -43,13 +43,13 @@ export default function Navbar() {
       </div>
 
       {mobileOpen && (
-        <div className="border-t border-white/10 bg-[#0A0516]/95 py-4 md:hidden">
+        <div className="border-t border-white/10 bg-[#0A0516]/95 py-4 transition-all duration-300 md:hidden">
           <div className="mx-auto flex max-w-[1200px] flex-col gap-3 px-6">
             {menuItems.map((id) => (
               <a
                 key={id}
                 href={`#${id}`}
-                className="rounded-3xl px-4 py-3 text-sm text-white/70 transition hover:bg-white/5 hover:text-white"
+                className="rounded-3xl px-4 py-3 text-sm text-white/70 transition duration-300 ease-out hover:bg-white/5 hover:text-white hover:-translate-x-0.5"
                 onClick={() => setMobileOpen(false)}
               >
                 {id.charAt(0).toUpperCase() + id.slice(1)}

@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import Navbar from './navbar'
 import Hero from './hero'
+import Cursor from './Cursor'
 import Skills from './skills'
 import Project from './project'
 import Footer from './footer'
@@ -41,9 +42,9 @@ function App() {
           <section id="about-detail" ref={detailRef} className="mt-24 rounded-[32px] border border-white/10 bg-[#10071c]/70 p-8 shadow-[0_40px_120px_rgba(88,41,178,0.12)] sm:p-10">
             <div className="max-w-3xl space-y-6">
               <p className="text-sm uppercase tracking-[0.3em] text-violet-300/80">About Queen Uka</p>
-              <h2 className="text-3xl font-semibold text-white sm:text-4xl">Transitioning from Law to Frontend Development</h2>
+              <h2 className="text-3xl font-semibold text-white sm:text-4xl">Transitioning from Law to Fullstack Development</h2>
               <p className="text-base leading-8 text-white/70 sm:text-lg">
-                I am Queen Uka, a frontend developer building polished, user-friendly web experiences.
+                I am Queen Uka, a fullstack developer building polished, user-friendly web experiences.
                 I transitioned from law to software development because I love solving problems with code,
                 building beautiful interfaces, and making websites that feel modern and accessible.
               </p>
@@ -63,12 +64,26 @@ function App() {
         )}
 
         <section id="skills" className="mt-24">
+          <div className="mb-8 max-w-2xl">
+            <p className="text-sm uppercase tracking-[0.3em] text-violet-300/80">Skills</p>
+            <h2 className="mt-4 text-3xl font-semibold text-white sm:text-4xl">
+              Tools and technologies I use
+            </h2>
+          </div>
+
           <div className="mt-6">
             <Skills />
           </div>
         </section>
 
         <section id="projects" className="mt-24">
+          <div className="mb-8 max-w-2xl">
+            <p className="text-sm uppercase tracking-[0.3em] text-violet-300/80">Projects</p>
+            <h2 className="mt-4 text-3xl font-semibold text-white sm:text-4xl">
+              Live work I’ve built
+            </h2>
+          </div>
+
           <div className="mt-6">
             <Project />
           </div>
@@ -76,6 +91,7 @@ function App() {
       </main>
 
       <Footer />
+      <Cursor />
     </div>
   )
 }

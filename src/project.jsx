@@ -16,17 +16,20 @@ export default function Project() {
 
   return (
     <div className="grid gap-6 lg:grid-cols-2">
-      {projects.map((project) => (
+      {projects.map((project, index) => (
         <article
           key={project.title}
-          className="rounded-[32px] border border-white/10 bg-[#140726]/80 p-8 shadow-[0_40px_120px_rgba(88,41,178,0.12)]"
+          className="group rounded-[32px] border border-white/10 bg-[#140726]/80 p-8 shadow-[0_40px_120px_rgba(88,41,178,0.12)] transition duration-500 motion-safe:hover:-translate-y-4 motion-safe:hover:shadow-[0_50px_160px_rgba(88,41,178,0.28)] hover:border-violet-400/30 hover:bg-white/5 animate-fade-up"
+          style={{ animationDelay: `${index * 120}ms` }}
+          data-cursor-target
         >
           <p className="text-sm uppercase tracking-[0.28em] text-violet-300/80">Live Project</p>
           <h2 className="mt-4 text-3xl font-semibold text-white">{project.title}</h2>
           <p className="mt-4 max-w-xl text-base leading-8 text-white/70">{project.summary}</p>
           <button
             onClick={() => handleVisit(project.url)}
-            className="mt-8 inline-flex items-center gap-2 rounded-full bg-violet-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-violet-400"
+            className="mt-8 inline-flex items-center gap-2 rounded-full bg-violet-500 px-6 py-3 text-sm font-semibold text-white transition duration-300 ease-out hover:-translate-y-0.5 hover:bg-violet-400"
+            data-cursor-target
           >
             View Live Site
           </button>
