@@ -134,12 +134,9 @@ function App() {
           </section>
         )}
 
-        <section id="skills" className="mt-24" data-scroll-reveal>
+        <section id="core-stack" className="mt-24" data-scroll-reveal>
           <div className="mb-8 max-w-2xl">
-            <p className="text-sm uppercase tracking-[0.3em] text-violet-300/80">Skills</p>
-            <h2 className="mt-4 text-3xl font-semibold text-white sm:text-4xl">
-              Tools and technologies I use
-            </h2>
+            <h2 className="text-3xl font-semibold text-white sm:text-4xl">Core stack</h2>
           </div>
 
           <div className="mt-6">
@@ -149,10 +146,7 @@ function App() {
 
         <section id="projects" className="mt-24" data-scroll-reveal>
           <div className="mb-8 max-w-2xl">
-            <p className="text-sm uppercase tracking-[0.3em] text-violet-300/80">Projects</p>
-            <h2 className="mt-4 text-3xl font-semibold text-white sm:text-4xl">
-              Live work I’ve built
-            </h2>
+            <h2 className="text-3xl font-semibold text-white sm:text-4xl">Projects</h2>
           </div>
 
           <div className="mt-6">

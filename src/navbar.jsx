@@ -5,7 +5,16 @@ import profilePic from './assets/bestPic.jpeg'
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
 
-  const menuItems = ['about', 'skills', 'projects']
+  const menuItems = [
+    { id: 'about', label: 'About', href: '#about' },
+    { id: 'core-stack', label: 'Skills', href: '#core-stack' },
+    { id: 'projects', label: 'Projects', href: '#projects' },
+    {
+      id: 'contact',
+      label: 'Contact',
+      href: 'mailto:queenuka30@gmail.com?subject=Let%27s%20work%20together',
+    },
+  ]
 
   return (
     <header className="relative sticky top-0 z-50 border-b border-white/10 bg-[#0A0516]/80 backdrop-blur-md">
@@ -16,17 +25,17 @@ export default function Navbar() {
             alt="Profile"
             className="h-10 w-10 rounded-full border border-white/15 object-cover shadow-lg shadow-violet-950/40"
           />
-          <span>FULLSTACK</span>
+          <span>CROWNUKA</span>
         </div>
 
         <nav className="hidden items-center gap-8 md:flex">
-          {menuItems.map((id) => (
+          {menuItems.map(({ id, label, href }) => (
             <a
               key={id}
-              href={`#${id}`}
+              href={href}
               className="text-sm text-white/70 transition duration-300 ease-out hover:text-white hover:-translate-y-0.5"
             >
-              {id.charAt(0).toUpperCase() + id.slice(1)}
+              {label}
             </a>
           ))}
         </nav>
@@ -45,14 +54,14 @@ export default function Navbar() {
       {mobileOpen && (
         <div className="border-t border-white/10 bg-[#0A0516]/95 py-4 transition-all duration-300 md:hidden">
           <div className="mx-auto flex max-w-[1200px] flex-col gap-3 px-6">
-            {menuItems.map((id) => (
+            {menuItems.map(({ id, label, href }) => (
               <a
                 key={id}
-                href={`#${id}`}
+                href={href}
                 className="rounded-3xl px-4 py-3 text-sm text-white/70 transition duration-300 ease-out hover:bg-white/5 hover:text-white hover:-translate-x-0.5"
                 onClick={() => setMobileOpen(false)}
               >
-                {id.charAt(0).toUpperCase() + id.slice(1)}
+                {label}
               </a>
             ))}
           </div>

@@ -22,6 +22,13 @@ export default function Hero({ onLearnMore, isAboutOpen }) {
           >
             {isAboutOpen ? 'Hide details' : 'Learn More'}
           </button>
+          <a
+            href="mailto:queenuka30@gmail.com?subject=Let%27s%20work%20together"
+            className="inline-flex w-full items-center justify-center rounded-full border border-violet-400/40 bg-violet-500/10 px-6 py-3 text-sm font-semibold text-violet-100 transition duration-300 hover:-translate-y-0.5 hover:bg-violet-500/20 sm:w-auto"
+            data-cursor-target
+          >
+            Let’s work together
+          </a>
         </div>
       </div>
 

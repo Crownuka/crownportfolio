@@ -39,6 +39,17 @@ a {
   }
 }
 
+@media (pointer: coarse) {
+  html {
+    cursor: auto;
+  }
+
+  .cursor-dot,
+  .cursor-ring {
+    display: none !important;
+  }
+}
+
 .cursor-dot,
 .cursor-ring {
   position: absolute;
